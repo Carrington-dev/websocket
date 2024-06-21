@@ -42,22 +42,34 @@
             var count = 0;
             ws.onmessage = function(event) {
                 count += 1;
+                //console.log(event.data);
                 var data =  JSON.parse(event.data);
                 var messages = document.getElementById('messages');
+                messages.innerHTML = `
+                <tr>
+                <th scope="row">${count}</th>
+                <td>${data.time}</td>
+                <td>USD/EUR</td>
+                <td> ${data.USDtoEUR}</td>
+                </tr>
+                `
                 messages.innerHTML += `
                 <tr>
                 <th scope="row">${count}</th>
-                <td>1</td>
-                <td>USD</td>
-                <td>${data.currency}. ${data.USD}</td>
+                <td>${data.time}</td>
+                <td>EUR/GBP</td>
+                <td> ${data.EURtoGBP}</td>
                 </tr>
                 `
-                /*
-                var message = document.createElement('div');
-                var content = document.createTextNode(event.data);
-                message.appendChild(content);
-                messages.appendChild(message);
-                */
+                messages.innerHTML += `
+                <tr>
+                <th scope="row">${count}</th>
+                <td>${data.time}</td>
+                <td>GBP/USD</td>
+                <td> ${data.GBPtoUSD}</td>
+                </tr>
+                `
+                
             };
         </script>
   </body>

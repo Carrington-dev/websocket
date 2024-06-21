@@ -12,7 +12,11 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "name": "World"})
+    context = dict()
+    context["request"] = request
+    context["name"] = "FxTools"
+    context["title"] = "FxTools"
+    return templates.TemplateResponse("index.html", context)
 
 
 @app.websocket("/ws")

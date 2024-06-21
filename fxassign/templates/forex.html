@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON in HTML</title>
+</head>
+<body>
+    <div id="jsonData"></div>
+
+    <script>
+        
+
+        var ws = new WebSocket("ws://localhost:8000/ws");
+            var count = 0;
+            ws.onmessage = function(event) {
+                count += 1;
+                //console.log(event.data);
+                document.getElementById('jsonData').textContent = event.data;
+                
+            };
+    </script>
+</body>
+</html>
